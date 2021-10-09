@@ -1,0 +1,217 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="nfLZ|h,en_dGfuNl)?Ce">current_slot</variable>
+  </variables>
+  <block type="start_wiz_program" id="gz7-|aKQ[ms0$*Q)ok4G" deletable="false" movable="false" x="10" y="10">
+    <next>
+      <block type="wizskill_intent_response" id="Xz!SrVyE!9:Rvqz|zdLs">
+        <value name="INTENT">
+          <block type="text" id="MuiIP{]45bzelj%B*fGN">
+            <field name="TEXT">weather_report</field>
+          </block>
+        </value>
+        <value name="UTTERANCES">
+          <block type="lists_create_with" id="JtoGmSe;Pt}N{5eUZMj#">
+            <mutation items="5"></mutation>
+            <value name="ADD0">
+              <block type="text" id="4K;{XD}u1Uns}TKlA`6#">
+                <field name="TEXT">wizbuddy what is the current temperature</field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="text" id="GQh/am:U1kKn#e%MCly_">
+                <field name="TEXT">How humid it is</field>
+              </block>
+            </value>
+            <value name="ADD2">
+              <block type="text" id="c`{vg/%w;zX2yW,mOiNA">
+                <field name="TEXT">what is value from temperature sensor</field>
+              </block>
+            </value>
+            <value name="ADD3">
+              <block type="text" id="=cp/u1#tXp]qf[EzKHUh">
+                <field name="TEXT">How hot it is</field>
+              </block>
+            </value>
+            <value name="ADD4">
+              <block type="text" id="8%5MGFn!|.YiBm,0jm*=">
+                <field name="TEXT">what is the current temperature</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="RESPONSES">
+          <block type="wizskill_text_speak" id="wZ9]f(;4=F#IJ/1Y)iCY">
+            <value name="TEXT">
+              <block type="text" id="_93VA/[wcK#S^O$~j]F$">
+                <field name="TEXT">Today's temperature as reported is 30</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <next>
+          <block type="wizskill_intent_slot_response" id="X^s3G@HE`eUW{]+W#u/6">
+            <value name="INTENT">
+              <block type="text" id="FbIx[)nnL]m#[bly`8?E">
+                <field name="TEXT">wiz_look</field>
+              </block>
+            </value>
+            <value name="SLOT">
+              <block type="wizskill_slot_creator" id="@eMzuMeM}AA^wgqhZoL7">
+                <value name="SLOT_NAME">
+                  <block type="text" id="KQE=[fk24Vp*NZkOcxkx">
+                    <field name="TEXT">look_types</field>
+                  </block>
+                </value>
+                <value name="SLOTS">
+                  <block type="lists_create_with" id="zUBGj%LlCbk.$zQo(DUK">
+                    <mutation items="6"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="3myEnXY[W2Bz|b8vf~K6">
+                        <field name="TEXT">look up</field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="text" id="db|lUdI4eq|uOv#E?C8m">
+                        <field name="TEXT">look down</field>
+                      </block>
+                    </value>
+                    <value name="ADD2">
+                      <block type="text" id="D71tVD,}sIUtUg6Fs(g,">
+                        <field name="TEXT">turn left</field>
+                      </block>
+                    </value>
+                    <value name="ADD3">
+                      <block type="text" id="4O~Q~OaJ0ue*6d8vgY=i">
+                        <field name="TEXT">turn right</field>
+                      </block>
+                    </value>
+                    <value name="ADD4">
+                      <block type="text" id="7{8xoy~Di_wGn]]T``0I">
+                        <field name="TEXT">say yes</field>
+                      </block>
+                    </value>
+                    <value name="ADD5">
+                      <block type="text" id="1.IZu[;{GD[op?_O(HT~">
+                        <field name="TEXT">say no</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="UTTERANCES">
+              <block type="lists_create_with" id="{;VK=}ElT#p4sM(_^:EU">
+                <mutation items="5"></mutation>
+                <value name="ADD0">
+                  <block type="wizskill_text_with_slot" id="0s,/bq4iW^Vpu,8GnNTS">
+                    <field name="SLOT_VALUE">look_types</field>
+                    <value name="PRE_TEXT">
+                      <block type="text" id="JO1s[WT./_:f2vF-Ku2.">
+                        <field name="TEXT">hey wizbuddy</field>
+                      </block>
+                    </value>
+                    <value name="POST_TEXT">
+                      <block type="text" id="![C:=(C6=a`hC+MY-1x@">
+                        <field name="TEXT">for me</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="wizskill_text_with_slot" id="yo4OUM;B`5fJ:NDff#:+">
+                    <field name="SLOT_VALUE">look_types</field>
+                    <value name="PRE_TEXT">
+                      <block type="text" id="Ky#=!2_??*/*PWk*:ZhG">
+                        <field name="TEXT">can you please</field>
+                      </block>
+                    </value>
+                    <value name="POST_TEXT">
+                      <block type="text" id="pKi-8Elu466mk5Ex)1{?">
+                        <field name="TEXT"></field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="ADD2">
+                  <block type="wizskill_text_with_slot" id="J$wI1G!!WQBUD8|shj+:">
+                    <field name="SLOT_VALUE">look_types</field>
+                    <value name="PRE_TEXT">
+                      <block type="text" id="T{b53t*U{zB!.f%-Z:17">
+                        <field name="TEXT"></field>
+                      </block>
+                    </value>
+                    <value name="POST_TEXT">
+                      <block type="text" id="yk[dD:)J6o7qUD$pBiQ[">
+                        <field name="TEXT">towards the object</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="ADD3">
+                  <block type="wizskill_text_with_slot" id="[X=;[cGw(_9P()f40qmF">
+                    <field name="SLOT_VALUE">look_types</field>
+                    <value name="PRE_TEXT">
+                      <block type="text" id=".;NEB1U)_qQlZe0GjXIz">
+                        <field name="TEXT">i want you to</field>
+                      </block>
+                    </value>
+                    <value name="POST_TEXT">
+                      <block type="text" id="aYnugR6y945wb%exY7!O">
+                        <field name="TEXT"></field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="ADD4">
+                  <block type="wizskill_text_with_slot" id="y:.NS$4xl^+Gpx22a5R^">
+                    <field name="SLOT_VALUE">look_types</field>
+                    <value name="PRE_TEXT">
+                      <block type="text" id="#u.w]wpmih1^;9E9EXb(">
+                        <field name="TEXT">please</field>
+                      </block>
+                    </value>
+                    <value name="POST_TEXT">
+                      <block type="text" id="X4)L5:4U};oP:p32IJbt">
+                        <field name="TEXT">your head</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="RESPONSES">
+              <block type="variables_set" id="{c)m`Yj1`Ta|0tn3;1nU">
+                <field name="VAR" id="nfLZ|h,en_dGfuNl)?Ce">current_slot</field>
+                <value name="VALUE">
+                  <block type="wizskill_get_slot_variable" id=".EAYae-u60%X?A[iwe`+">
+                    <field name="SLOT_NAME">look_types</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="wizskill_text_speak" id="TXcyZ_jZx/~V(,=3xK?e">
+                    <value name="TEXT">
+                      <block type="text_join" id="ePX~rGvhc^}WE!lAW@#g">
+                        <mutation items="2"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="NfP/@sK.8r9;9f+(*.a5">
+                            <field name="TEXT">Sure, I have changed head to </field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="variables_get" id="%.!,5RKwk@e@irlcuNw;">
+                            <field name="VAR" id="nfLZ|h,en_dGfuNl)?Ce">current_slot</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
