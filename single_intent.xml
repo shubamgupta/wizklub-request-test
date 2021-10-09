@@ -1,0 +1,52 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="start_wiz_program" id="gz7-|aKQ[ms0$*Q)ok4G" deletable="false" movable="false" x="10" y="10">
+    <next>
+      <block type="wizskill_intent_response" id="Xz!SrVyE!9:Rvqz|zdLs">
+        <value name="INTENT">
+          <block type="text" id="MuiIP{]45bzelj%B*fGN">
+            <field name="TEXT">weather_report</field>
+          </block>
+        </value>
+        <value name="UTTERANCES">
+          <block type="lists_create_with" id="JtoGmSe;Pt}N{5eUZMj#">
+            <mutation items="5"></mutation>
+            <value name="ADD0">
+              <block type="text" id="4K;{XD}u1Uns}TKlA`6#">
+                <field name="TEXT">wizbuddy what is the current temperature</field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="text" id="GQh/am:U1kKn#e%MCly_">
+                <field name="TEXT">How humid it is</field>
+              </block>
+            </value>
+            <value name="ADD2">
+              <block type="text" id="c`{vg/%w;zX2yW,mOiNA">
+                <field name="TEXT">what is value from temperature sensor</field>
+              </block>
+            </value>
+            <value name="ADD3">
+              <block type="text" id="=cp/u1#tXp]qf[EzKHUh">
+                <field name="TEXT">How hot it is</field>
+              </block>
+            </value>
+            <value name="ADD4">
+              <block type="text" id="8%5MGFn!|.YiBm,0jm*=">
+                <field name="TEXT">what is the current temperature</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="RESPONSES">
+          <block type="wizskill_text_speak" id="wZ9]f(;4=F#IJ/1Y)iCY">
+            <value name="TEXT">
+              <block type="text" id="_93VA/[wcK#S^O$~j]F$">
+                <field name="TEXT">Today's temperature as reported is 30</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>
