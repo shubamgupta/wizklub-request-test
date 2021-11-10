@@ -1,0 +1,456 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="=k;=yfPP}TFK8kQ(62(F">response</variable>
+    <variable id="E,nRU|p*)WKU@g6_-lHK">color</variable>
+    <variable id="x?i8.^HU-=F|$(7``;%;">payload</variable>
+  </variables>
+  <block type="start_wiz_program" id="#jA*0Z8]}50h35i~Wab3" deletable="false" movable="false" x="10" y="10">
+    <next>
+      <block type="wizskill_intent_response" id="ewq5,Hy%bD1F^NNBnJI~">
+        <value name="INTENT">
+          <block type="text" id="bNxtNa+mByyyE?_Qo;(;">
+            <field name="TEXT">distance_measure</field>
+          </block>
+        </value>
+        <value name="UTTERANCES">
+          <block type="lists_create_with" id="yqq.aMiU:%0z6RB#mOZr">
+            <mutation items="6"></mutation>
+            <value name="ADD0">
+              <block type="text" id=",SL!B7r-FlyzPE/|,48l">
+                <field name="TEXT">How far is the object from wizgear</field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="text" id="-n;.]Qc7htVyt_jP7H~,">
+                <field name="TEXT">distance between object and wizgear</field>
+              </block>
+            </value>
+            <value name="ADD2">
+              <block type="text" id="H/nn(VQEyV$ghVjraJ;Q">
+                <field name="TEXT">check ultrasonic value</field>
+              </block>
+            </value>
+            <value name="ADD3">
+              <block type="text" id="b?z){xL.n-%XU|${3xRR">
+                <field name="TEXT">what is the distance of wall from wizgear</field>
+              </block>
+            </value>
+            <value name="ADD4">
+              <block type="text" id="/K?}r02E,!??)es7AR!t">
+                <field name="TEXT">give me ultrasonic reading</field>
+              </block>
+            </value>
+            <value name="ADD5">
+              <block type="text" id="AmZxW=FN@3Y(FfSME#G+">
+                <field name="TEXT">share the ultrasonic reading</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="RESPONSES">
+          <block type="variables_set" id="c6,zeBl$Cz]lD!*4{M$p">
+            <field name="VAR" id="=k;=yfPP}TFK8kQ(62(F">response</field>
+            <value name="VALUE">
+              <block type="wizapi_post_request_params" id="$b;TQ_y6sK1T[o?$E:ky">
+                <value name="URL">
+                  <block type="text" id="Jh6:I=u7E,4]FbtK[I4Q">
+                    <field name="TEXT">https://dev.wizklub.com/api/secured/wiziot-poll-request/</field>
+                  </block>
+                </value>
+                <value name="HEADER">
+                  <block type="text" id="PCF8RvrJ@(K+%!Lf]sC)">
+                    <field name="TEXT">{   'Api-Access-Key': '4PyC4hAX0o-6w168Qa62',   'Api-Secret-Key': 'S60cTcBrEolxGaGI7EcKp__9RMQyn9uFbA',   'Content-Type': 'application/json' }</field>
+                  </block>
+                </value>
+                <value name="DATA">
+                  <block type="text" id="zs82oQ(kJ8!j8won{g*(">
+                    <field name="TEXT">{     "mode": "READ",     "device_id": "shubam_device_1",     "source": "API",     "api": "sensor_read",     "sensor": "ultrasonic" }</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="+_jZIFBrVt^yK@U?;s!5">
+                <field name="VAR" id="=k;=yfPP}TFK8kQ(62(F">response</field>
+                <value name="VALUE">
+                  <block type="wiz_json_reader" id="fXC~NF)Z7pi@ad|qm;Dz">
+                    <value name="JSON_OBJ">
+                      <block type="variables_get" id="lP,T/UJ-RL^|lyfme,b*">
+                        <field name="VAR" id="=k;=yfPP}TFK8kQ(62(F">response</field>
+                      </block>
+                    </value>
+                    <value name="PARSER">
+                      <block type="json_key_parser" id="aYGq{qbHju~W[hl{5)-A">
+                        <field name="JSON_KEY">response</field>
+                        <value name="MORE_KEYS">
+                          <block type="json_key_parser" id="G}F]+S?xiNV+NGyRpBuI">
+                            <field name="JSON_KEY">worker_response</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_if" id="vSib297@KC/!rJsK5o)F">
+                    <mutation else="1"></mutation>
+                    <value name="IF0">
+                      <block type="logic_compare" id="bto7yJk*wc=eW?!7r8sP">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="wiz_json_reader" id="!]`voFx|H_sX3Rx(^)xm">
+                            <value name="JSON_OBJ">
+                              <block type="variables_get" id="ACBe)I(D)OA?mbZs_^pv">
+                                <field name="VAR" id="=k;=yfPP}TFK8kQ(62(F">response</field>
+                              </block>
+                            </value>
+                            <value name="PARSER">
+                              <block type="json_key_parser" id="^X*IF+AB$bUDzu6d-/W*">
+                                <field name="JSON_KEY">state</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="text" id="fo$(g~A7mCQ-2@8DY%Nm">
+                            <field name="TEXT">FAILED</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="wizskill_text_speak" id="LaeHsD`%KKfS[D/+2aE=">
+                        <value name="TEXT">
+                          <block type="text_join" id="WQ`![zrk++=cL/*]d,Fr">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                              <block type="text" id="^h*!AU.cP;?xlrvwyi6j">
+                                <field name="TEXT">There is failure while trigger distance sensor request. </field>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="wiz_json_reader" id="Q97ydPUpd9BP*p!k,=5v">
+                                <value name="JSON_OBJ">
+                                  <block type="variables_get" id="4-8v_htUJr}p}F|-3D+p">
+                                    <field name="VAR" id="=k;=yfPP}TFK8kQ(62(F">response</field>
+                                  </block>
+                                </value>
+                                <value name="PARSER">
+                                  <block type="json_key_parser" id="0uK]b/uvVKPEvDBr|)~$">
+                                    <field name="JSON_KEY">msg</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <statement name="ELSE">
+                      <block type="wizskill_text_speak" id="gFB5:/9uX3R/Diie(nXv">
+                        <value name="TEXT">
+                          <block type="text_join" id="FF$lGhBSgFmW9Bzok2hg">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                              <block type="text" id="D_5pTH7uY|,n-`Rcq%)u">
+                                <field name="TEXT">Your request is executed successfully.</field>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="wiz_json_reader" id="zbqXw}g9Gag@u!,`*EDc">
+                                <value name="JSON_OBJ">
+                                  <block type="variables_get" id="~VXydgyB1!W#icFOvFER">
+                                    <field name="VAR" id="=k;=yfPP}TFK8kQ(62(F">response</field>
+                                  </block>
+                                </value>
+                                <value name="PARSER">
+                                  <block type="json_key_parser" id="3,%$9LPh#*(:1_e98_yA">
+                                    <field name="JSON_KEY">msg</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="wizskill_ssml_speak" id="{B(RqJjGIv@}bUR}th=7">
+                        <value name="TEXT">
+                          <block type="wiz_ssml_whisper" id="~,%UZg.5]1H`^Ry=e+%j">
+                            <value name="TEXT">
+                              <block type="text" id="r4u/G8i:Hk];0iW;|3BB">
+                                <field name="TEXT">Your request is executed successfully.</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="wizskill_text_speak" id="%h|#h+L#)ZK.14v6FzOo">
+                            <value name="TEXT">
+                              <block type="text" id="4uS!HVLWh+SXm]([#=:^">
+                                <field name="TEXT">I am always ready to help</field>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="wizskill_intent_slot_response" id="P+`K![g`p;hY(FkJcdr%">
+            <value name="INTENT">
+              <block type="text" id="@4m@OvAV+oS:zxN;YUuc">
+                <field name="TEXT">tricolor_manager</field>
+              </block>
+            </value>
+            <value name="SLOT">
+              <block type="wizskill_slot_creator" id="vIVl|88(Yd_pYP;by?CL">
+                <value name="SLOT_NAME">
+                  <block type="text" id="qm:w9Pg5IGQdeu.XP+(F">
+                    <field name="TEXT">wiz_sup_color</field>
+                  </block>
+                </value>
+                <value name="SLOTS">
+                  <block type="lists_create_with" id="mu=h8-76`ZSBYmdk@PUh">
+                    <mutation items="5"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="^4up=_S9HXfLeL@7_.`v">
+                        <field name="TEXT">red</field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="text" id="@L^8VG+A%l(|(vUlJhl8">
+                        <field name="TEXT">green</field>
+                      </block>
+                    </value>
+                    <value name="ADD2">
+                      <block type="text" id="RE5wSU[7#)G~UzKO[?^|">
+                        <field name="TEXT">blue</field>
+                      </block>
+                    </value>
+                    <value name="ADD3">
+                      <block type="text" id="dv43;aw|3~~yBV`#2a~2">
+                        <field name="TEXT">orange</field>
+                      </block>
+                    </value>
+                    <value name="ADD4">
+                      <block type="text" id="u,ZiShWrbf8tdK6SU2!-">
+                        <field name="TEXT">violet</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="UTTERANCES">
+              <block type="lists_create_with" id="-=^G!bsC-VrMeI=O1TO{">
+                <mutation items="5"></mutation>
+                <value name="ADD0">
+                  <block type="wizskill_text_with_slot" id="xW^~ofGIWJnzriY16,iy">
+                    <field name="SLOT_VALUE">wiz_sup_color</field>
+                    <value name="PRE_TEXT">
+                      <block type="text" id="La(3*IeIgKcviP$?3=Kv">
+                        <field name="TEXT">Glow </field>
+                      </block>
+                    </value>
+                    <value name="POST_TEXT">
+                      <block type="text" id="]{MsBZ#c)e)8~Ipf*(5v">
+                        <field name="TEXT">color on my tricolor</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="wizskill_text_with_slot" id="#%,d;i!e2PJ7Px0c@Gel">
+                    <field name="SLOT_VALUE">wiz_sup_color</field>
+                    <value name="PRE_TEXT">
+                      <block type="text" id=",3}6fmn-9ry1V$NBk/G3">
+                        <field name="TEXT">I want to see </field>
+                      </block>
+                    </value>
+                    <value name="POST_TEXT">
+                      <block type="text" id="[Jh9{(_FMSNxu{;naOFR">
+                        <field name="TEXT">color</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="ADD2">
+                  <block type="wizskill_text_with_slot" id="]5$|Klgjn@_xVDY6Xu[@">
+                    <field name="SLOT_VALUE">wiz_sup_color</field>
+                    <value name="PRE_TEXT">
+                      <block type="text" id="5%`!5#)Im%r]8-H1:/*F">
+                        <field name="TEXT">turn led to</field>
+                      </block>
+                    </value>
+                    <value name="POST_TEXT">
+                      <block type="text" id="#`dj!uqJjT7~AmD,5J2q">
+                        <field name="TEXT">color</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="ADD3">
+                  <block type="wizskill_text_with_slot" id=".mys3HrBlHYzu]D}9EPQ">
+                    <field name="SLOT_VALUE">wiz_sup_color</field>
+                    <value name="PRE_TEXT">
+                      <block type="text" id="4f!QBW%t00bRP+Lq+pU%">
+                        <field name="TEXT">make tricolor</field>
+                      </block>
+                    </value>
+                    <value name="POST_TEXT">
+                      <block type="text" id="v6A_^2I)GP~5)i%dL017">
+                        <field name="TEXT"></field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="ADD4">
+                  <block type="wizskill_text_with_slot" id="9,C%hbp;]$G*lQnZcoL;">
+                    <field name="SLOT_VALUE">wiz_sup_color</field>
+                    <value name="PRE_TEXT">
+                      <block type="text" id="YWbLYqry?p:o8?bku(+U">
+                        <field name="TEXT">change color to</field>
+                      </block>
+                    </value>
+                    <value name="POST_TEXT">
+                      <block type="text" id="DcxrJ@60D;5`#SmuC2)=">
+                        <field name="TEXT"></field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="RESPONSES">
+              <block type="variables_set" id="Ys+i!C@}n_|Z]uPWL!Yd">
+                <field name="VAR" id="E,nRU|p*)WKU@g6_-lHK">color</field>
+                <value name="VALUE">
+                  <block type="wizskill_get_slot_variable" id=":x;mUAVik_ZSUK6urQMV">
+                    <field name="SLOT_NAME">wiz_sup_color</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="rtyU}t+P2KbR:vP-tO9(">
+                    <field name="VAR" id="x?i8.^HU-=F|$(7``;%;">payload</field>
+                    <value name="VALUE">
+                      <block type="text_join" id="-4-5bc9`.mHP5S.W#SA(">
+                        <mutation items="3"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="TU?4WJ7+%(8G~2l2}kj/">
+                            <field name="TEXT">{ "mode": "WRITE", "device_id": "shubam_device_1", "source": "API", "api": "tricolor", "type": "color_power", "power": "1","color":"</field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="variables_get" id="@kCAA2he.}|};kZXwu@q">
+                            <field name="VAR" id="E,nRU|p*)WKU@g6_-lHK">color</field>
+                          </block>
+                        </value>
+                        <value name="ADD2">
+                          <block type="text" id="bgbsO(^((e1m!PYVT8M6">
+                            <field name="TEXT">" }</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="P1sE,G*XSr0nP@LM0tz9">
+                        <field name="VAR" id="=k;=yfPP}TFK8kQ(62(F">response</field>
+                        <value name="VALUE">
+                          <block type="wizapi_post_request_params" id="Y%$kSJXI4U(/WyN/CxuC">
+                            <value name="URL">
+                              <block type="text" id="M#yy}QG7jqR5X=Uy,-*/">
+                                <field name="TEXT">https://dev.wizklub.com/api/secured/wiziot-poll-request/</field>
+                              </block>
+                            </value>
+                            <value name="HEADER">
+                              <block type="text" id="NwR5uHepFRJ/Ch$gcwcw">
+                                <field name="TEXT">{   'Api-Access-Key': '4PyC4hAX0o-6w168Qa62',   'Api-Secret-Key': 'S60cTcBrEolxGaGI7EcKp__9RMQyn9uFbA',   'Content-Type': 'application/json' }</field>
+                              </block>
+                            </value>
+                            <value name="DATA">
+                              <block type="variables_get" id=",M:o#!,)`K+U38SyT~YQ">
+                                <field name="VAR" id="x?i8.^HU-=F|$(7``;%;">payload</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="variables_set" id="n],FUWTw2E}d}-i0%?/c">
+                            <field name="VAR" id="=k;=yfPP}TFK8kQ(62(F">response</field>
+                            <value name="VALUE">
+                              <block type="wiz_json_reader" id=")$:ww?srlT7s]3NuZmEB">
+                                <value name="JSON_OBJ">
+                                  <block type="variables_get" id="E,FGAj}Wj+8=MnTWio`B">
+                                    <field name="VAR" id="=k;=yfPP}TFK8kQ(62(F">response</field>
+                                  </block>
+                                </value>
+                                <value name="PARSER">
+                                  <block type="json_key_parser" id="g_fO~Z,WII$lF8?x*BU;">
+                                    <field name="JSON_KEY">response</field>
+                                    <value name="MORE_KEYS">
+                                      <block type="json_key_parser" id="^pk;J9X$RJy|yYNy.U,j">
+                                        <field name="JSON_KEY">worker_response</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="wizskill_text_speak" id="HKrR78LF5CX1(lUR=tmD">
+                                <value name="TEXT">
+                                  <block type="text_join" id="o-HMSQZ[8M1*.iC)4!+?">
+                                    <mutation items="2"></mutation>
+                                    <value name="ADD0">
+                                      <block type="text" id="*8,;Wfzo2`V_dbcp*K)l">
+                                        <field name="TEXT">Response from Backend </field>
+                                      </block>
+                                    </value>
+                                    <value name="ADD1">
+                                      <block type="wiz_json_reader" id="|eneap[Vu5CP}^Peig:)">
+                                        <value name="JSON_OBJ">
+                                          <block type="variables_get" id="v!p?OlP`W9(YB.1eK7!@">
+                                            <field name="VAR" id="=k;=yfPP}TFK8kQ(62(F">response</field>
+                                          </block>
+                                        </value>
+                                        <value name="PARSER">
+                                          <block type="json_key_parser" id="qLTUWu6ZJO4SQ]W(${}f">
+                                            <field name="JSON_KEY">msg</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="wizskill_audio_speak" id=",DmK!u^=QU%Hu:n5dc$q">
+                                    <value name="TEXT">
+                                      <block type="text" id="m5a36Ah`9HPr6wRg4ZjF">
+                                        <field name="TEXT">https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
